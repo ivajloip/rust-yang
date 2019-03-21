@@ -1,0 +1,26 @@
+module <module-name> {
+
+
+      // header information
+      <namespace statement>
+      <prefix statement>
+
+      // optional
+      <yang-version statement>
+
+      // linkage statements
+      <import statements>
+      <include statements>
+
+      // meta information
+      <organization statement>
+      <contact statement>
+      <description statement>
+      <reference statement>
+
+      // revision history
+      <revision statements>
+
+      // module definitions
+      <other statements>
+  }
