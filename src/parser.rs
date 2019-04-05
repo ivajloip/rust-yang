@@ -258,6 +258,13 @@ named!(parse_yang_version<&str, String>, do_parse!(
     (value)
 ));
 
+named!(boolean<&str, bool>, do_parse!(
+    space0 >>
+    value: alt!(tag!("true") | tag!("false")) >>
+    space0 >>
+    (value.parse::<bool>().unwrap())  
+));
+
 #[test]
 fn test_parse_minimal_module() {
     assert_eq!(
@@ -298,4 +305,16 @@ fn test_parse_complete_module() {
             ..structs::Module::new()
         }))
     );
+}
+
+#[test]
+fn test_parse_boolean() {
+    let result = boolean("true").unwrap();
+    assert_eq!(result.1, true);
+
+    let result = boolean("false").unwrap();
+    assert_eq!(result.1, false);
+
+    let result = boolean("foobar");
+    assert_eq!(result.is_err(), true);
 }
